@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <style>
+            html {
+                height: 297mm;
+                width: 210mm;
+                margin: auto;
+            }
+
+            body {
+                font-size: 0.8rem;
+                padding: 3em;
+                box-sizing: border-box;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                margin: 0;
+            }
+
+            .top-logo-holder {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 4em;
+            }
+
+            .top-logo {
+                width: 40%;
+            }
+
+            .main-heading {
+                text-align: center;
+                text-decoration: underline;
+                margin-bottom: 2em;
+            }
+
+            .contact-info-section {
+                display: flex;
+                margin-bottom: 4em;
+            }
+
+            .contact-item-heading {
+                font-weight: bold;
+            }
+
+            .products-table {
+                width: 100%;
+                margin-bottom: 2em;
+            }
+
+            .products-table thead {
+                background-color: #343434;
+                -webkit-print-color-adjust: exact;
+                color: white;
+                text-align: left;
+            }
+
+            .products-table tr {
+                display: flex;
+            }
+
+            .products-table th,
+            .products-table td {
+                padding: 0.5em;
+            }
+
+            .products-table td {
+                border-bottom: 2px solid #343434;
+            }
+
+            .products-table td:last-child {
+                margin-right: 0.5em;
+            }
+
+            .products-table td:first-child {
+                padding-left: 0;
+                margin-left: 0.5em;
+            }
+
+            .total-amount-section {
+                display: flex;
+            }
+
+            .footer-section {
+                display: flex;
+                margin-top: auto;
+            }
+
+            .center-align {
+                text-align: center;
+            }
+
+            .right-align {
+                text-align: right;
+            }
+
+            .flex-1 {
+                flex: 1;
+            }
+
+            .flex-3 {
+                flex: 3;
+            }
+
+            .flex-5 {
+                flex: 5;
+            }
+
+            .margin-right-1 {
+                padding-right: 1em;
+            }
+
+    </style>
+</head>
+
+<body>
+<div class="top-logo-holder">
+    <img class="top-logo" src="homepick-logo.png">
+</div>
+<h1 class="main-heading">INVOICE</h1>
+<div class="contact-info-section">
+    <div class="contact-info-item flex-1">
+        <p class="contact-item-heading">ISSUED TO</p>
+        <p class="contact-item-detail">issued-to-placeholder</p>
+    </div>
+    <div class="contact-info-item flex-1">
+        <p class="contact-item-heading">CONTACT</p>
+        <p class="contact-item-detail">contact-no-placeholder</p>
+    </div>
+    <div class="contact-info-item flex-1">
+        <p class="contact-item-heading">EMAIL</p>
+        <p class="contact-item-detail">email-placeholder</p>
+    </div>
+    <div class="contact-info-item flex-1">
+        <p class="contact-item-heading">ADDRESS</p>
+        <p class="contact-item-detail">address-placeholder</p>
+    </div>
+</div>
+<table class="products-table" cellspacing="0">
+    <thead>
+    <tr>
+        <th class="flex-3">PRODUCT NAME</th>
+        <th class="flex-1 center-align">QTY</th>
+        <th class="flex-1 center-align">PRICE</th>
+        <th class="flex-1 right-align">TOTAL</th>
+    </tr>
+    </thead>
+    <tbody>products-placeholder</tbody>
+</table>
+<div class="total-amount-section">
+    <div class="flex-3"></div>
+    <div class="flex-1"></div>
+    <div class="center-align flex-1">TOTAL AMOUNT</div>
+    <div class="margin-right-1 right-align flex-1">£grand-total-placeholder</div>
+</div>
+<div class="footer-section">
+    <div class="contact-info-item flex-3">
+        <p class="contact-item-heading">OFFICE ADDRESS</p>
+        <p class="contact-item-detail">Manchester Business Park, 3000 Aviator Way, Manchester M22
+            5TG.</p>
+    </div>
+    <div class="flex-5"></div>
+    <div class="contact-info-item flex-3">
+        <p class="contact-item-heading">CONTACT NUMBER</p>
+        <p class="contact-item-detail">0800 0141 302</p>
+    </div>
+</div>
+</body>
+
+</html>
