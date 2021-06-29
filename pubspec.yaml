@@ -49,9 +49,9 @@ msix_config:
   certificate_path: CERTIFICATE.pfx
   certificate_password: caucasus042
   publisher: E = info@tronisys.com, CN = Tronisys, OU = Development, O = Tronisys, L = Lahore, S = Punjab, C = PK
-  logo_path: C:\homepick-logo.png
-  start_menu_icon_path: C:\homepick-logo.png
-  tile_icon_path: C:\homepick-logo.png
+  logo_path: assets/img/homepick-logo.png
+  start_menu_icon_path: assets/img/homepick-logo.png
+  tile_icon_path: assets/img/homepick-logo.png
   icons_background_color: transparent
   architecture: x64
   capabilities: 'allJoyn,codeGeneration,voipCall,removableStorage,musicLibrary,enterpriseAuthentication,spatialPerception,remoteSystem,userNotificationListener,backgroundMediaPlayback,videosLibrary,picturesLibrary,userDataTasks,globalMediaControl,systemManagement,documentsLibrary,accessoryManager'

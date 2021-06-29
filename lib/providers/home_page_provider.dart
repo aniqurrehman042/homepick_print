@@ -11,6 +11,14 @@ class HomePageProvider with ChangeNotifier {
   ];
   List<String> _recipients = [];
   bool _loading = false;
+  String _certificateYears = '10';
+
+  String get certificateYears => _certificateYears;
+
+  set certificateYears(String value) {
+    _certificateYears = value;
+    notifyListeners();
+  }
 
   bool get loading => _loading;
 
@@ -88,6 +96,11 @@ class HomePageProvider with ChangeNotifier {
 
   void removeProduct(int productIndex) {
     _products.removeAt(productIndex);
+    notifyListeners();
+  }
+
+  void removeRecipient(int recipientIndex) {
+    _recipients.removeAt(recipientIndex);
     notifyListeners();
   }
 

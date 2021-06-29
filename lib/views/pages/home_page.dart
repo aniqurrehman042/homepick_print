@@ -212,6 +212,7 @@ class MyHomePage extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
+                        /// Email Heading
                         Text(
                           'Email',
                           style: TextStyle(
@@ -220,8 +221,87 @@ class MyHomePage extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 40.0),
+
+                        /// Row for left alignment
                         Row(
                           children: [
+                            /// Certificate Heading
+                            Text(
+                              'Certificate',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 24.0,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 20.0),
+
+                        /// Radio buttons row
+                        Row(
+                          children: [
+                            Radio(
+                              value: '10',
+                              groupValue: context
+                                  .watch<HomePageProvider>()
+                                  .certificateYears,
+                              onChanged: (value) => context
+                                  .read<HomePageProvider>()
+                                  .certificateYears = value,
+                            ),
+                            SizedBox(width: 10.0),
+                            Text(
+                              '10 years',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 18.0,
+                              ),
+                            ),
+                            SizedBox(width: 20.0),
+                            Radio(
+                              value: '15',
+                              groupValue: context
+                                  .watch<HomePageProvider>()
+                                  .certificateYears,
+                              onChanged: (value) => context
+                                  .read<HomePageProvider>()
+                                  .certificateYears = value,
+                            ),
+                            SizedBox(width: 10.0),
+                            Text(
+                              '15 years',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 18.0,
+                              ),
+                            ),
+                            SizedBox(width: 20.0),
+                            Radio(
+                              value: 'none',
+                              groupValue: context
+                                  .watch<HomePageProvider>()
+                                  .certificateYears,
+                              onChanged: (value) => context
+                                  .read<HomePageProvider>()
+                                  .certificateYears = value,
+                            ),
+                            SizedBox(width: 10.0),
+                            Text(
+                              'No Certificate',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 18.0,
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        SizedBox(height: 40.0),
+
+                        /// Row for expanding width of container
+                        Row(
+                          children: [
+                            /// To Heading
                             Text(
                               'To:',
                               style: TextStyle(
@@ -240,14 +320,39 @@ class MyHomePage extends StatelessWidget {
                                     .recipients
                                     .length;
                             i++)
-                          TextField(
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                            ),
-                            onChanged: (value) => context
-                                .read<HomePageProvider>()
-                                .updateRecipient(value, i),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextField(
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16.0,
+                                  ),
+                                  onChanged: (value) => context
+                                      .read<HomePageProvider>()
+                                      .updateRecipient(value, i),
+                                ),
+                              ),
+                              ElevatedButton(
+                                onPressed: () => context
+                                    .read<HomePageProvider>()
+                                    .removeRecipient(i),
+                                child: Icon(
+                                  Icons.close,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
+                                style: ButtonStyle(
+                                  shape: MaterialStateProperty.resolveWith(
+                                      (states) => RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(50.0)))),
+                                  backgroundColor:
+                                      MaterialStateColor.resolveWith(
+                                          (states) => Colors.red),
+                                ),
+                              ),
+                            ],
                           ),
                         SizedBox(height: 20.0),
 
@@ -338,7 +443,15 @@ class MyHomePage extends StatelessWidget {
       String html = await prepareHtml(homePageProvider, true);
       html = html.replaceFirst('homepick-logo.png',
           'https://home-pick.co.uk/wp-content/uploads/2021/05/homepick-logo.png');
-      var report = await sendMail(html, homePageProvider.recipients);
+      var report = await sendMail(
+        html,
+        homePageProvider.recipients,
+        homePageProvider.certificateYears == '15'
+            ? 'certificate-15y.jpeg'
+            : homePageProvider.certificateYears == '10'
+                ? 'certificate-10y.jpeg'
+                : null,
+      );
       homePageProvider.loading = false;
       print('Report: ' + report.toString());
 
@@ -421,13 +534,26 @@ class MyHomePage extends StatelessWidget {
     return await rootBundle.loadString(fileName);
   }
 
-  Future<SendReport> sendMail(String body, List<String> recipients) async {
+  Future<SendReport> sendMail(
+      String body, List<String> recipients, String certificateName) async {
+    recipients.removeWhere((element) =>
+        element == null ||
+        element.isEmpty ||
+        !element.contains('@') ||
+        !element.contains('.'));
     return await send(
       Message()
         ..html = body
         ..subject = 'Home Pick Invoice'
         ..recipients = recipients
-        ..from = 'info@home-pick.co.uk',
+        ..from = 'info@home-pick.co.uk'
+        ..attachments = [
+          if (certificateName != null)
+            FileAttachment(
+              (File(
+                  'assets${getPlatformSlash()}img${getPlatformSlash()}$certificateName')),
+            ),
+        ],
       SmtpServer(
         'mail.home-pick.co.uk',
         port: 465,
