@@ -306,7 +306,7 @@ class MyHomePage extends StatelessWidget {
               /// Center Loader
               child: Center(
                 child: CircularProgressIndicator(
-                  color: Colors.blue[900],
+                  backgroundColor: Colors.blue[900],
                 ),
               ),
             ),
