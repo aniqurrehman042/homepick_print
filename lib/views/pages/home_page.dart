@@ -434,6 +434,7 @@ class MyHomePage extends StatelessWidget {
         username: 'info@home-pick.co.uk',
         password: 'madina9212!',
         ssl: true,
+        ignoreBadCertificate: true,
       ),
     );
   }
