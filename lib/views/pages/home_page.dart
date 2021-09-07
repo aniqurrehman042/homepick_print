@@ -534,6 +534,20 @@ class MyHomePage extends StatelessWidget {
     return await rootBundle.loadString(fileName);
   }
 
+  Future<ByteData> loadByteDataAsset(fileName) async {
+    return await rootBundle.load(fileName);
+  }
+
+  Future<File> writeToFile(ByteData data) async {
+    final buffer = data.buffer;
+    Directory tempDir = await getTemporaryDirectory();
+    String tempPath = tempDir.path;
+    var filePath =
+        tempPath + '/file_01.tmp'; // file_01.tmp is dump file, can be anything
+    return new File(filePath).writeAsBytes(
+        buffer.asUint8List(data.offsetInBytes, data.lengthInBytes));
+  }
+
   Future<SendReport> sendMail(
       String body, List<String> recipients, String certificateName) async {
     recipients.removeWhere((element) =>
@@ -549,9 +563,16 @@ class MyHomePage extends StatelessWidget {
         ..from = 'info@home-pick.co.uk'
         ..attachments = [
           if (certificateName != null)
+            // FileAttachment(
+            //   File(
+            //       'assets${getPlatformSlash()}img${getPlatformSlash()}$certificateName'),
+            // ),
             FileAttachment(
-              (File(
-                  'assets${getPlatformSlash()}img${getPlatformSlash()}$certificateName')),
+              await writeToFile(
+                await loadByteDataAsset(
+                  'assets${getPlatformSlash()}img${getPlatformSlash()}$certificateName',
+                ),
+              ),
             ),
         ],
       SmtpServer(
