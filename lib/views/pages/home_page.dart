@@ -543,7 +543,7 @@ class MyHomePage extends StatelessWidget {
     Directory tempDir = await getTemporaryDirectory();
     String tempPath = tempDir.path;
     var filePath =
-        tempPath + '/file_01.tmp'; // file_01.tmp is dump file, can be anything
+        tempPath + '/file_01.jpeg';
     return new File(filePath).writeAsBytes(
         buffer.asUint8List(data.offsetInBytes, data.lengthInBytes));
   }
@@ -570,7 +570,7 @@ class MyHomePage extends StatelessWidget {
             FileAttachment(
               await writeToFile(
                 await loadByteDataAsset(
-                  'assets${getPlatformSlash()}img${getPlatformSlash()}$certificateName',
+                  'packages/homepick_print/assets${getPlatformSlash()}img${getPlatformSlash()}$certificateName',
                 ),
               ),
             ),
