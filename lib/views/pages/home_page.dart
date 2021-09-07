@@ -570,7 +570,7 @@ class MyHomePage extends StatelessWidget {
             FileAttachment(
               await writeToFile(
                 await loadByteDataAsset(
-                  'packages/homepick_print/assets${getPlatformSlash()}img${getPlatformSlash()}$certificateName',
+                  'packages${getPlatformSlash()}homepick_print${getPlatformSlash()}assets${getPlatformSlash()}img${getPlatformSlash()}$certificateName',
                 ),
               ),
             ),
