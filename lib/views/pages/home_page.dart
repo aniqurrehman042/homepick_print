@@ -150,7 +150,7 @@ class MyHomePage extends StatelessWidget {
                                   ),
                                   SizedBox(height: 20.0),
                                   Text(
-                                    '597 Dumbarton Road\nClydebank, G814ET',
+                                    '15 Carlibar Road\nBarrhead, G781AA',
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 16.0,
