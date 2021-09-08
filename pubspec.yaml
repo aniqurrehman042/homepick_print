@@ -28,6 +28,7 @@ flutter:
   assets:
     - assets/img/
     - assets/html/
+    - assets/keys/
     - packages/homepick_print/assets/img/certificate-10y.jpeg
     - packages/homepick_print/assets/img/certificate-15y.jpeg
 
