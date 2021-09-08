@@ -542,8 +542,7 @@ class MyHomePage extends StatelessWidget {
     final buffer = data.buffer;
     Directory tempDir = await getTemporaryDirectory();
     String tempPath = tempDir.path;
-    var filePath =
-        tempPath + '/file_01.jpeg';
+    var filePath = tempPath + '/file_01.jpeg';
     return new File(filePath).writeAsBytes(
         buffer.asUint8List(data.offsetInBytes, data.lengthInBytes));
   }
@@ -579,7 +578,7 @@ class MyHomePage extends StatelessWidget {
         'mail.home-pick.co.uk',
         port: 465,
         username: 'info@home-pick.co.uk',
-        password: 'madina9212!',
+        password: await loadAsset('assets/keys/email-pass.txt'),
         ssl: true,
         ignoreBadCertificate: true,
       ),
